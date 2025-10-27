@@ -29,6 +29,15 @@
         These two scripts have been added for the Visual Edits, please do not edit or remove them
         -->
         <script>
+  // Suppress ResizeObserver loop limit exceeded errors
+  window.addEventListener('error', e => {
+    if (e.message === 'ResizeObserver loop completed with undelivered notifications.' ||
+        e.message === 'ResizeObserver loop limit exceeded') {
+      e.stopImmediatePropagation();
+    }
+  });
+</script>
+        <script>
             // Only load visual edit scripts when inside an iframe and visual edits are enabled
             if (window.self !== window.top && '%REACT_APP_ENABLE_VISUAL_EDITS%' === 'true') {
                 // Load debug monitor script
